@@ -674,6 +674,851 @@
 
   <p class="ct-eyebrow">Reach Us</p>
   <h2 class="ct-title">Contact Us</h2>
+  <p class="ct-sub">We'll love to hear from you</p>
+  <div class="orn" aria-hidden="true">
+    <div class="orn-line"></div>
+    <div class="orn-dot g"></div>
+    <div class="orn-line r"></div>
+  </div>
+
+  <div class="ct-grid">
+
+    <a class="ct-card" href="https://www.facebook.com/profile.php?id=61576695209895" target="_blank" rel="noopener" aria-label="Facebook">
+      <div class="ct-icon">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="ct-label">Facebook</div>
+      <div class="ct-handle">@Myreva Olfactives</div><!-- ← replace -->
+    </a>
+
+    <a class="ct-card" href="https://www.instagram.com/myrevaolfactives?igsh=MWQxN2V3dnM3dXh3MA==" target="_blank" rel="noopener" aria-label="Instagram">
+      <div class="ct-icon">
+        <svg viewBox="0 0 24 24">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="var(--gold)" stroke-width="1.5"/>
+          <circle cx="12" cy="12" r="4" stroke="var(--gold)" stroke-width="1.5"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="var(--gold)"/>
+        </svg>
+      </div>
+      <div class="ct-label">Instagram</div>
+      <div class="ct-handle">@myrevaolfactives</div><!-- ← replace -->
+    </a>
+
+    <a class="ct-card" href="https://wa.me/03293758981" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <div class="ct-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="ct-label">WhatsApp</div>
+      <div class="ct-handle">+92 329 3758981</div><!-- ← replace -->
+    </a>
+
+    <a class="ct-card" href="mailto:myrevaolfactives@gmail.com" aria-label="Email">
+      <div class="ct-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="22,6 12,13 2,6" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="ct-label">Email</div>
+      <div class="ct-handle">myrevaolfactives@gmail.com</div><!-- ← replace -->
+    </a>
+
+  </div>
+
+  <button class="nav-btn up" onclick="goTo('pricelist')" style="margin-top:0.5rem">
+    <span class="arr">↑</span> Back to Pricelist
+  </button>
+
+  <div class="ct-footer-orn">
+    <div class="orn" aria-hidden="true">
+      <div class="orn-line" style="width:38px"></div>
+      <div class="orn-dot g"></div>
+      <div class="orn-line r" style="width:38px"></div>
+    </div>
+    <p class="ct-footer-tagline">Where Scent Becomes Spell.</p>
+    <p class="ct-copy">© 2026 Myreva Olfactives &nbsp;·&nbsp; All Rights Reserved</p>
+  </div>
+
+</div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  function goTo(id) {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }
+  window.goTo = goTo;
+
+  document.getElementById('hero-cta').addEventListener('click', function (e) {
+    e.preventDefault(); goTo('pricelist');
+  });
+
+  /* Logo letter animation */
+  (function () {
+    var el = document.getElementById('logo-text');
+    'MYREVA'.split('').forEach(function (ch, i) {
+      var s = document.createElement('span');
+      s.className = 'L'; s.textContent = ch;
+      s.style.animationDelay = (0.1 + i * 0.1) + 's';
+      el.appendChild(s);
+    });
+  })();
+
+  /* Parallax on hero */
+  var heroInner = document.querySelector('#hero .hero-inner');
+  var heroEl    = document.getElementById('hero');
+  window.addEventListener('scroll', function () {
+    var sy = window.scrollY, hh = heroEl.offsetHeight;
+    if (sy < hh && heroInner) heroInner.style.transform = 'translateY(' + sy * 0.18 + 'px)';
+  }, { passive: true });
+
+  /* Gold dust particles */
+  (function () {
+    var canvas = document.getElementById('hero-canvas');
+    var ctx = canvas.getContext('2d');
+    var W, H, pts;
+    function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+    function newPt() {
+      return { x:Math.random()*W, y:H+10, r:Math.random()*1.1+0.35,
+               vy:-(Math.random()*0.3+0.09), vx:(Math.random()-0.5)*0.1,
+               a:Math.random()*0.55+0.2, life:Math.random()*0.6+0.4,
+               decay:Math.random()*0.0013+0.0007 };
+    }
+    function init() { pts = Array.from({length:55}, newPt); pts.forEach(function(p){ p.y = Math.random()*H; }); }
+    function draw() {
+      ctx.clearRect(0,0,W,H);
+      pts.forEach(function(p,i){
+        p.x+=p.vx; p.y+=p.vy; p.life-=p.decay;
+        if(p.life<=0||p.y<-8){pts[i]=newPt();return;}
+        ctx.save();ctx.globalAlpha=p.life*p.a*0.7;ctx.fillStyle='#c9a84c';
+        ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();ctx.restore();
+      });
+      requestAnimationFrame(draw);
+    }
+    resize(); init(); draw();
+    window.addEventListener('resize', resize, {passive:true});
+  })();
+
+  /* Pricelist row scroll-reveal */
+  (function () {
+    var rows = document.querySelectorAll('.pl-row');
+    if (!('IntersectionObserver' in window)) {
+      rows.forEach(function(r){ r.style.opacity=1; r.style.transform='none'; }); return;
+    }
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var row = e.target;
+        var idx = Array.from(row.parentNode.querySelectorAll('.pl-row')).indexOf(row);
+        setTimeout(function(){ row.classList.add('revealed'); }, idx * 65);
+        obs.unobserve(row);
+      });
+    }, {threshold:0.06, rootMargin:'0px 0px -20px 0px'});
+    rows.forEach(function(r){ obs.observe(r); });
+  })();
+
+  /* Contact card reveal */
+  (function () {
+    var cards = document.querySelectorAll('.ct-card');
+    if (!('IntersectionObserver' in window)) return;
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var card = e.target;
+        var idx = Array.from(card.parentNode.querySelectorAll('.ct-card')).indexOf(card);
+        card.style.cssText = 'opacity:0;transform:translateY(18px);transition:opacity 0.6s ease,transform 0.6s cubic-bezier(0.16,1,0.3,1)';
+        setTimeout(function(){ card.style.opacity=1; card.style.transform='translateY(0)'; }, 120+idx*90);
+        obs.unobserve(card);
+      });
+    }, {threshold:0.1});
+    cards.forEach(function(c){ c.style.opacity=0; obs.observe(c); });
+  })();
+
+})();
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Myreva Olfactives — Where Scent Becomes Spell</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+  /* ════════════════════════════════════════════
+     RESET + ROOT
+  ════════════════════════════════════════════ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* ── Dark burgundy backgrounds ── */
+    --bg-base:    #1e0509;   /* deepest — used as true base */
+    --bg-hero:    #2a0810;   /* hero centre */
+    --bg-pl:      #250710;   /* pricelist — barely lighter */
+    --bg-ct:      #200609;   /* contact — slightly deeper */
+    --bg-card:    #2f0c14;   /* surface cards / rows */
+    --bg-card-alt:#350e17;   /* alternating row */
+    --bg-row-h:   rgba(201,168,76,0.04); /* row hover */
+
+    /* ── Burgundy glow tones ── */
+    --burg-glow:  #5c1325;
+    --burg-mid:   #3d0f1c;
+
+    /* ── Gold palette ── */
+    --gold:       #c9a84c;
+    --gold-lt:    #e8c97e;
+    --gold-dk:    #7a5e1a;
+    --gold-dim:   rgba(201,168,76,0.18);
+    --gold-bdr:   rgba(201,168,76,0.18);
+    --gold-bdr-h: rgba(201,168,76,0.50);
+
+    /* ── Text on dark ── */
+    --t-head:     #f5e8d8;   /* headings */
+    --t-body:     #e0ccb0;   /* body / fragrance names */
+    --t-soft:     #c8a870;   /* tagline, subtext */
+    --t-muted:    rgba(224,204,176,0.45);  /* inspired-by, notes */
+    --t-dim:      rgba(201,168,76,0.30);   /* row numbers, small labels */
+
+    /* ── Category pills — adjusted for dark bg ── */
+    --ph-bg: rgba(80,130,220,0.12); --ph-c: #8ab4f8; --ph-b: rgba(80,130,220,0.28);
+    --pf-bg: rgba(210,70,80,0.12);  --pf-c: #f0908a; --pf-b: rgba(210,70,80,0.28);
+    --pu-bg: rgba(210,155,30,0.12); --pu-c: #d4a040; --pu-b: rgba(210,155,30,0.28);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg-base);
+    color: var(--t-body);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+    line-height: 1.55;
+  }
+
+  /* Film grain across all sections */
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 9999;
+    pointer-events: none; opacity: 0.032;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+    background-size: 170px;
+  }
+
+  .section {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+
+  /* ── Shared ornament ── */
+  .orn { display:flex;align-items:center;justify-content:center;gap:12px; }
+  .orn-line   { height:1px;width:clamp(30px,5vw,62px);background:linear-gradient(90deg,transparent,var(--gold-dk)); }
+  .orn-line.r { background:linear-gradient(90deg,var(--gold-dk),transparent); }
+  .orn-dot    { width:4px;height:4px;background:var(--gold-dk);transform:rotate(45deg);flex-shrink:0; }
+  .orn-dot.g  { background:var(--gold); }
+
+  /* ── Keyframes ── */
+  @keyframes fadeUp   { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn   { from{opacity:0} to{opacity:1} }
+  @keyframes expandX  { from{width:0} to{width:100%} }
+  @keyframes rowIn    { from{opacity:0;transform:translateX(-10px)} to{opacity:1;transform:translateX(0)} }
+  @keyframes letterIn { from{opacity:0;transform:translateY(44px) rotateX(28deg)} to{opacity:1;transform:translateY(0) rotateX(0)} }
+  @keyframes scrollFlow {
+    0%{transform:translateY(-100%);opacity:0} 30%{opacity:1} 100%{transform:translateY(200%);opacity:0}
+  }
+
+  /* ════════════════════════════════════════════
+     NAVIGATION BUTTONS
+  ════════════════════════════════════════════ */
+  .nav-btn {
+    display:inline-flex;align-items:center;gap:10px;
+    padding:10px 24px;
+    border:1px solid var(--gold-bdr);
+    background:none;
+    color:var(--t-soft);
+    font-family:'Cinzel',serif;font-size:0.57rem;letter-spacing:0.32em;text-transform:uppercase;
+    cursor:pointer;text-decoration:none;
+    transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .nav-btn:hover {
+    border-color:var(--gold-bdr-h);
+    color:var(--gold-lt);
+    background:rgba(201,168,76,0.05);
+    transform:translateY(-1px);
+  }
+  .nav-btn .arr { transition:transform 0.3s;display:inline-block; }
+  .nav-btn.up:hover .arr { transform:translateY(-3px); }
+  .nav-btn.dn:hover .arr { transform:translateY(3px); }
+
+  /* ════════════════════════════════════════════
+     § 1  HERO
+  ════════════════════════════════════════════ */
+  #hero {
+    background:
+      radial-gradient(ellipse 88% 55% at 50% 42%, rgba(100,18,38,0.90) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 65% at 14% 86%, rgba(70,6,20,0.65)  0%, transparent 58%),
+      radial-gradient(ellipse 55% 65% at 86% 86%, rgba(70,6,20,0.65)  0%, transparent 58%),
+      radial-gradient(ellipse 120% 120% at 50% 50%, var(--bg-hero), var(--bg-base));
+  }
+
+  #hero::after {
+    content:'';position:absolute;bottom:0;left:0;right:0;height:1px;z-index:3;
+    background:linear-gradient(90deg,transparent,var(--gold),rgba(201,168,76,0.5),var(--gold),transparent);
+  }
+
+  #hero-canvas { position:absolute;inset:0;pointer-events:none;z-index:1; }
+
+  .corner { position:absolute;width:52px;height:52px;opacity:0;animation:fadeIn 1s ease forwards 2.3s; }
+  .corner.tl { top:2rem;left:2rem;  border-top:1px solid rgba(201,168,76,0.32);border-left:1px solid rgba(201,168,76,0.32); }
+  .corner.tr { top:2rem;right:2rem; border-top:1px solid rgba(201,168,76,0.32);border-right:1px solid rgba(201,168,76,0.32); }
+  .corner.bl { bottom:4.5rem;left:2rem;  border-bottom:1px solid rgba(201,168,76,0.32);border-left:1px solid rgba(201,168,76,0.32); }
+  .corner.br { bottom:4.5rem;right:2rem; border-bottom:1px solid rgba(201,168,76,0.32);border-right:1px solid rgba(201,168,76,0.32); }
+
+  .hero-inner { text-align:center;padding:2rem 1.5rem;position:relative;z-index:2; }
+  .hero-orn-top { opacity:0;animation:fadeUp 0.8s ease forwards 0.25s;margin-bottom:1.8rem; }
+
+  .logo-wrap { margin-bottom:0.4rem; }
+
+  /*
+   ┌────────────────────────────────────────────┐
+   │  IMAGE LOGO: replace #logo-text span with: │
+   │  <img id="logo-img" src="myreva-logo.png"  │
+   │    alt="Myreva Olfactives"                 │
+   │    style="height:clamp(48px,9vw,110px);    │
+   │    display:block;margin:0 auto;opacity:0;  │
+   │    animation:fadeUp 1.2s ease forwards     │
+   │    0.15s;filter:drop-shadow(0 0 28px       │
+   │    rgba(201,168,76,0.28))">                │
+   └────────────────────────────────────────────┘
+  */
+  #logo-text {
+    font-family:'Cinzel',serif;
+    font-size:clamp(2.8rem,9vw,7.8rem);font-weight:600;letter-spacing:0.30em;line-height:1;
+    filter:drop-shadow(0 0 55px rgba(201,168,76,0.22));
+    display:block;
+    color: var(--gold); /* solid fallback if gradient clip unsupported */
+  }
+  #logo-text .L {
+    display:inline-block;opacity:0;
+    transform:translateY(44px) rotateX(28deg);
+    animation:letterIn 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+    background:linear-gradient(165deg,var(--gold-lt) 0%,var(--gold) 45%,var(--gold-dk) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    color:transparent;
+  }
+
+  .logo-sub {
+    font-family:'Montserrat',sans-serif;
+    font-size:clamp(0.46rem,1.1vw,0.62rem);letter-spacing:0.55em;
+    color:rgba(201,168,76,0.38);text-transform:uppercase;
+    margin-top:0.55rem;opacity:0;animation:fadeIn 1s ease forwards 1.2s;
+  }
+  .logo-accent {
+    width:0;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(201,168,76,0.5),transparent);
+    margin:0.65rem auto 0;
+    animation:expandX 0.9s cubic-bezier(0.16,1,0.3,1) forwards 1.1s;
+    max-width:300px;
+  }
+
+  .tagline {
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+    font-size:clamp(0.9rem,2.2vw,1.4rem);letter-spacing:0.18em;color:var(--t-soft);
+    opacity:0;animation:fadeUp 0.9s ease forwards 1.35s;margin-top:1.3rem;
+  }
+  .hero-vdiv {
+    width:1px;height:48px;
+    background:linear-gradient(180deg,rgba(201,168,76,0.42),transparent);
+    margin:2rem auto;opacity:0;animation:fadeIn 0.7s ease forwards 1.8s;
+  }
+
+  .cta-btn {
+    display:inline-flex;align-items:center;gap:14px;
+    padding:13px 40px;
+    border:1px solid rgba(201,168,76,0.45);
+    background:transparent;color:var(--gold);
+    font-family:'Cinzel',serif;font-size:0.66rem;letter-spacing:0.33em;text-transform:uppercase;
+    cursor:pointer;text-decoration:none;position:relative;overflow:hidden;
+    transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+    opacity:0;animation:fadeUp 0.7s ease forwards 2.05s;
+  }
+  .cta-btn::before {
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 50% 110%,rgba(201,168,76,0.12),transparent 60%);
+    opacity:0;transition:opacity 0.4s;
+  }
+  .cta-btn:hover::before { opacity:1; }
+  .cta-btn:hover {
+    border-color:var(--gold-lt);color:var(--gold-lt);
+    box-shadow:0 0 32px rgba(201,168,76,0.18);transform:translateY(-2px);
+  }
+  .cta-btn .cta-arr { transition:transform 0.35s cubic-bezier(0.4,0,0.2,1); }
+  .cta-btn:hover .cta-arr { transform:translateY(4px); }
+
+  .scroll-hint {
+    position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    opacity:0;animation:fadeIn 1s ease forwards 3s;pointer-events:none;
+  }
+  .sh-lbl { font-family:'Cinzel',serif;font-size:0.48rem;letter-spacing:0.45em;color:rgba(201,168,76,0.28); }
+  .sh-track { width:1px;height:36px;background:rgba(201,168,76,0.08);overflow:hidden;position:relative; }
+  .sh-track::after {
+    content:'';position:absolute;top:0;left:0;width:100%;height:50%;
+    background:linear-gradient(180deg,rgba(201,168,76,0.55),transparent);
+    animation:scrollFlow 2s ease-in-out infinite;
+  }
+
+  /* ════════════════════════════════════════════
+     § 2  PRICELIST — same dark burgundy world
+  ════════════════════════════════════════════ */
+  #pricelist {
+    background:
+      radial-gradient(ellipse 90% 32% at 50% 0%,   rgba(100,18,38,0.45) 0%, transparent 60%),
+      radial-gradient(ellipse 65% 28% at 50% 100%,  rgba(100,18,38,0.28) 0%, transparent 55%),
+      radial-gradient(ellipse 120% 120% at 50% 50%, var(--bg-pl), var(--bg-base));
+    padding:5.5rem 1.5rem 5rem;
+    justify-content:flex-start;
+  }
+
+  /* Thin gold rule tying sections */
+  #pricelist::before {
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold),rgba(201,168,76,0.4),var(--gold),transparent);
+  }
+
+  .pl-container { width:100%;max-width:760px; }
+
+  /* Section header */
+  .pl-header { text-align:center;margin-bottom:2.8rem; }
+  .pl-eyebrow {
+    font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:0.5em;
+    color:var(--gold-dk);text-transform:uppercase;margin-bottom:0.6rem;
+  }
+  .pl-title {
+    font-family:'Cinzel',serif;
+    font-size:clamp(1.5rem,3.2vw,2.2rem);font-weight:500;
+    color:var(--t-head);letter-spacing:0.1em;margin-bottom:0.4rem;
+  }
+  .pl-sub {
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+    font-size:1.05rem;color:var(--t-soft);
+  }
+  .pl-header .orn { margin-top:1.2rem; }
+
+  /* Table card */
+  .pl-table-wrap {
+    border:1px solid var(--gold-bdr);
+    border-radius:2px;overflow:hidden;
+    box-shadow:
+      0 0 0 1px rgba(201,168,76,0.06),
+      0 8px 40px rgba(0,0,0,0.45),
+      0 2px 12px rgba(0,0,0,0.25);
+  }
+
+  /* Column header bar */
+  .pl-col-row {
+    display:grid;
+    grid-template-columns:30px 1fr auto 130px 58px 52px;
+    padding:0.65rem 1.1rem;
+    border-bottom:1px solid rgba(201,168,76,0.18);
+    background:rgba(201,168,76,0.06);
+  }
+  .pl-col-lbl {
+    font-family:'Montserrat',sans-serif;font-size:0.47rem;letter-spacing:0.38em;
+    text-transform:uppercase;color:var(--t-dim);white-space:nowrap;
+  }
+  .pl-col-lbl.c { text-align:center; }
+  .pl-col-lbl.r { text-align:right; }
+
+  /* Fragrance rows */
+  .pl-row {
+    display:grid;
+    grid-template-columns:30px 1fr auto 130px 58px 52px;
+    padding:0.9rem 1.1rem;
+    border-bottom:1px solid rgba(201,168,76,0.055);
+    align-items:center;
+    background:var(--bg-card);
+    opacity:0;transform:translateX(-10px);
+    transition:background 0.22s;
+  }
+  .pl-row:nth-child(even) { background:var(--bg-card-alt); }
+  .pl-row:last-child { border-bottom:none; }
+  .pl-row:hover { background:rgba(201,168,76,0.05); }
+  .pl-row.revealed { animation:rowIn 0.52s cubic-bezier(0.16,1,0.3,1) forwards; }
+
+  .row-num {
+    font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;
+    color:var(--t-dim);line-height:1;
+  }
+  .row-name-block { min-width:0; }
+  .row-name {
+    font-family:'Cinzel',serif;font-size:0.76rem;font-weight:500;
+    color:var(--t-body);letter-spacing:0.06em;margin-bottom:0.18rem;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .row-inspired {
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:0.8rem;color:var(--t-muted);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+
+  .row-arrow { color:rgba(201,168,76,0.28);font-size:0.72rem;padding:0 10px;align-self:center;flex-shrink:0; }
+
+  .row-cat { text-align:center; }
+  .pill {
+    display:inline-block;
+    font-family:'Montserrat',sans-serif;font-size:0.47rem;font-weight:500;
+    letter-spacing:0.22em;text-transform:uppercase;
+    padding:3px 9px;border-radius:2px;white-space:nowrap;
+  }
+  .pill-h { background:var(--ph-bg);color:var(--ph-c);border:1px solid var(--ph-b); }
+  .pill-f { background:var(--pf-bg);color:var(--pf-c);border:1px solid var(--pf-b); }
+  .pill-u { background:var(--pu-bg);color:var(--pu-c);border:1px solid var(--pu-b); }
+
+  .row-price { text-align:right;white-space:nowrap; }
+  .price-main { font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--gold); }
+  .price-cur {
+    font-family:'Montserrat',sans-serif;font-size:0.55rem;font-weight:400;
+    color:var(--t-muted);vertical-align:super;margin-right:1px;
+  }
+  .row-price-sm { text-align:right;white-space:nowrap; }
+  .price-small { font-family:'Montserrat',sans-serif;font-size:0.72rem;font-weight:400;color:var(--t-dim); }
+  .price-small .price-cur { font-size:0.46rem; }
+
+  /* Table footer */
+  .pl-table-footer {
+    padding:0.75rem 1.1rem;
+    border-top:1px solid rgba(201,168,76,0.1);
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem;
+    background:rgba(201,168,76,0.03);
+  }
+  .legend { display:flex;gap:14px;align-items:center;flex-wrap:wrap; }
+  .leg-item {
+    display:flex;align-items:center;gap:5px;
+    font-family:'Montserrat',sans-serif;font-size:0.46rem;letter-spacing:0.22em;
+    text-transform:uppercase;color:var(--t-muted);
+  }
+  .leg-dot { width:5px;height:5px;border-radius:1px; }
+  .leg-dot.h { background:var(--ph-c);opacity:0.8; }
+  .leg-dot.f { background:var(--pf-c);opacity:0.8; }
+  .leg-dot.u { background:var(--pu-c);opacity:0.8; }
+  .pl-note {
+    font-family:'Montserrat',sans-serif;font-size:0.46rem;letter-spacing:0.18em;
+    color:var(--t-muted);text-align:right;line-height:2;
+  }
+
+  .sec-nav {
+    display:flex;justify-content:space-between;align-items:center;
+    margin-top:2.2rem;gap:1rem;flex-wrap:wrap;
+  }
+
+  /* ════════════════════════════════════════════
+     § 3  CONTACT — same dark world
+  ════════════════════════════════════════════ */
+  #contact {
+    background:
+      radial-gradient(ellipse 80% 40% at 50% 58%, rgba(100,18,38,0.42) 0%, transparent 62%),
+      radial-gradient(ellipse 120% 120% at 50% 50%, var(--bg-ct), var(--bg-base));
+    padding:5rem 1.5rem;
+  }
+
+  #contact::before {
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold),rgba(201,168,76,0.4),var(--gold),transparent);
+  }
+
+  .ct-wrap { width:100%;max-width:580px;text-align:center; }
+
+  .ct-eyebrow {
+    font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:0.5em;
+    color:var(--gold-dk);text-transform:uppercase;margin-bottom:0.6rem;
+  }
+  .ct-title {
+    font-family:'Cinzel',serif;
+    font-size:clamp(1.5rem,3.2vw,2.2rem);font-weight:500;
+    color:var(--t-head);letter-spacing:0.1em;margin-bottom:0.4rem;
+  }
+  .ct-sub {
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+    font-size:1.05rem;color:var(--t-soft);margin-bottom:0;
+  }
+  .ct-wrap .orn { margin:1.2rem 0 2.6rem; }
+
+  /* Contact grid */
+  .ct-grid {
+    display:grid;grid-template-columns:1fr 1fr;gap:1px;
+    border:1px solid var(--gold-bdr);border-radius:2px;overflow:hidden;
+    background:var(--gold-bdr);margin-bottom:2rem;
+    box-shadow:0 8px 40px rgba(0,0,0,0.4),0 2px 12px rgba(0,0,0,0.22);
+  }
+
+  .ct-card {
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:0.85rem;padding:2rem 1.5rem;
+    background:var(--bg-card);
+    text-decoration:none;cursor:pointer;
+    position:relative;overflow:hidden;
+    transition:background 0.28s;
+  }
+  .ct-card:nth-child(even) { background:var(--bg-card-alt); }
+  .ct-card::before {
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 50% 105%,rgba(201,168,76,0.07),transparent 60%);
+    opacity:0;transition:opacity 0.4s;
+  }
+  .ct-card:hover::before { opacity:1; }
+  .ct-card:hover { background:rgba(201,168,76,0.05); }
+
+  .ct-icon {
+    width:46px;height:46px;
+    border:1px solid var(--gold-bdr);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(201,168,76,0.04);
+    transition:border-color 0.3s,transform 0.3s,background 0.3s;
+  }
+  .ct-card:hover .ct-icon {
+    border-color:var(--gold-bdr-h);transform:scale(1.08);background:rgba(201,168,76,0.08);
+  }
+  .ct-icon svg { width:20px;height:20px;fill:none; }
+
+  .ct-label {
+    font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.4em;
+    text-transform:uppercase;color:var(--gold);transition:color 0.3s;
+  }
+  .ct-card:hover .ct-label { color:var(--gold-lt); }
+
+  .ct-handle {
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:0.9rem;color:var(--t-muted);margin-top:-0.45rem;transition:color 0.3s;
+  }
+  .ct-card:hover .ct-handle { color:var(--t-soft); }
+
+  .ct-footer-orn { display:flex;flex-direction:column;align-items:center;gap:0.6rem;margin-top:2.4rem; }
+  .ct-footer-tagline {
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+    font-size:clamp(0.85rem,1.8vw,1.1rem);color:var(--t-muted);letter-spacing:0.1em;
+  }
+  .ct-copy {
+    font-family:'Montserrat',sans-serif;font-size:0.46rem;
+    letter-spacing:0.28em;color:rgba(201,168,76,0.22);text-transform:uppercase;margin-top:0.3rem;
+  }
+
+  /* ════════════════════════════════════════════
+     RESPONSIVE
+  ════════════════════════════════════════════ */
+  @media (max-width:700px) {
+    .corner { display:none; }
+    .pl-col-row { grid-template-columns:24px 1fr 80px 48px 44px; }
+    .pl-row      { grid-template-columns:24px 1fr 80px 48px 44px; }
+    .row-arrow { display:none; }
+    .row-inspired,.pl-col-lbl.inspired { display:none; }
+    .pl-container { max-width:520px; }
+  }
+  @media (max-width:480px) {
+    .pl-col-row { grid-template-columns:22px 1fr 72px 44px; }
+    .pl-row      { grid-template-columns:22px 1fr 72px 44px; }
+    .row-cat,.pl-col-lbl.cat { display:none; }
+    .ct-grid { grid-template-columns:1fr; }
+    .pl-table-footer { flex-direction:column;align-items:flex-start; }
+  }
+  @media (max-width:360px) {
+    .pl-col-row,.pl-row { padding:0.7rem 0.65rem; }
+    .row-name { font-size:0.68rem; }
+    .cta-btn  { padding:11px 22px;font-size:0.6rem; }
+  }
+  @media (min-width:2100px) { html { font-size:20px; } }
+  @media (min-width:3200px) { html { font-size:28px; } }
+  </style>
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════╗ -->
+<!--              § 1  HERO                 -->
+<!-- ╚══════════════════════════════════════╝ -->
+<section class="section" id="hero">
+
+  <canvas id="hero-canvas"></canvas>
+
+  <div class="corner tl" aria-hidden="true"></div>
+  <div class="corner tr" aria-hidden="true"></div>
+  <div class="corner bl" aria-hidden="true"></div>
+  <div class="corner br" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+
+    <div class="orn hero-orn-top" aria-hidden="true">
+      <div class="orn-line"></div>
+      <div class="orn-dot"></div>
+      <div class="orn-dot g" style="margin:0 -4px"></div>
+      <div class="orn-dot"></div>
+      <div class="orn-line r"></div>
+    </div>
+
+    <div class="logo-wrap">
+      <span id="logo-text" aria-label="MYREVA"></span>
+      <div class="logo-sub">Olfactives</div>
+      <div class="logo-accent"></div>
+    </div>
+
+    <p class="tagline">Where Scent Becomes Spell</p>
+    <div class="hero-vdiv" aria-hidden="true"></div>
+
+    <a href="#pricelist" class="cta-btn" id="hero-cta">
+      View Pricelist <span class="cta-arr" aria-hidden="true">↓</span>
+    </a>
+
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <span class="sh-lbl">Scroll</span>
+    <div class="sh-track"></div>
+  </div>
+
+</section>
+
+
+<!-- ╔══════════════════════════════════════╗ -->
+<!--            § 2  PRICELIST              -->
+<!-- ╚══════════════════════════════════════╝ -->
+<section class="section" id="pricelist">
+<div class="pl-container">
+
+  <div class="pl-header">
+    <p class="pl-eyebrow">Fragrance Collection I</p>
+    <h2 class="pl-title">Our Collection</h2>
+    <p class="pl-sub">Each impression, a world of its own</p>
+    <div class="orn" aria-hidden="true">
+      <div class="orn-line"></div>
+      <div class="orn-dot g"></div>
+      <div class="orn-line r"></div>
+    </div>
+  </div>
+
+  <div class="pl-table-wrap">
+
+    <div class="pl-col-row">
+      <div class="pl-col-lbl">#</div>
+      <div class="pl-col-lbl">Impression</div>
+      <div class="pl-col-lbl inspired" style="padding-left:28px">Inspired By</div>
+      <div class="pl-col-lbl cat c">Category</div>
+      <div class="pl-col-lbl r">55 ml</div>
+      <div class="pl-col-lbl r">3 ml</div>
+    </div>
+
+    <div class="pl-row">
+      <div class="row-num">1</div>
+      <div class="row-name-block"><div class="row-name">Oud Lantern</div><div class="row-inspired">Ahmed Al Maghribi Marj</div></div>
+      <div class="row-arrow">›</div>
+      <div class="row-cat"><span class="pill pill-h">Homme</span></div>
+      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>3200</span></div>
+      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>250</span></div>
+    </div>
+
+    <div class="pl-row">
+      <div class="row-num">2</div>
+      <div class="row-name-block"><div class="row-name">Eternal Chorus</div><div class="row-inspired">Louis Vuitton Symphony</div></div>
+      <div class="row-arrow">›</div>
+      <div class="row-cat"><span class="pill pill-u">Unisex</span></div>
+      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>3000</span></div>
+      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>250</span></div>
+    </div>
+
+    <div class="pl-row">
+      <div class="row-num">3</div>
+      <div class="row-name-block"><div class="row-name">The Apex</div><div class="row-inspired">Fragrance One Office For Men</div></div>
+      <div class="row-arrow">›</div>
+      <div class="row-cat"><span class="pill pill-h">Homme</span></div>
+      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>2500</span></div>
+      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>200</span></div>
+    </div>
+
+    <div class="pl-row">
+      <div class="row-num">4</div>
+      <div class="row-name-block"><div class="row-name">Coco Current</div><div class="row-inspired">Rasasi Hawas Tropical</div></div>
+      <div class="row-arrow">›</div>
+      <div class="row-cat"><span class="pill pill-h">Homme</span></div>
+      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>2000</span></div>
+      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>200</span></div>
+    </div>
+
+    <div class="pl-row">
+      <div class="row-num">5</div>
+      <div class="row-name-block"><div class="row-name">Cloud Candy</div><div class="row-inspired">Kayali Yum Boujee Marshmallow</div></div>
+      <div class="row-arrow">›</div>
+      <div class="row-cat"><span class="pill pill-f">Femme</span></div>
+      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>2000</span></div>
+      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>200</span></div>
+    </div>
+
+    <div class="pl-row">
+      <div class="row-num">6</div>
+      <div class="row-name-block"><div class="row-name">Subzero</div><div class="row-inspired">Rasasi Hawas Ice</div></div>
+      <div class="row-arrow">›</div>
+      <div class="row-cat"><span class="pill pill-h">Homme</span></div>
+      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>2000</span></div>
+      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>200</span></div>
+    </div>
+
+    <div class="pl-row">
+      <div class="row-num">7</div>
+      <div class="row-name-block"><div class="row-name">Lucent Thunder</div><div class="row-inspired">Imagination &amp; Sauvage Blend</div></div>
+      <div class="row-arrow">›</div>
+      <div class="row-cat"><span class="pill pill-h">Homme</span></div>
+      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>1800</span></div>
+      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>150</span></div>
+    </div>
+
+    <div class="pl-row">
+      <div class="row-num">8</div>
+      <div class="row-name-block"><div class="row-name">Silk Romance</div><div class="row-inspired">Lancôme La Nuit Trésor</div></div>
+      <div class="row-arrow">›</div>
+      <div class="row-cat"><span class="pill pill-f">Femme</span></div>
+      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>1800</span></div>
+      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>150</span></div>
+    </div>
+
+    <div class="pl-table-footer">
+      <div class="legend">
+        <div class="leg-item"><div class="leg-dot h"></div>Homme</div>
+        <div class="leg-item"><div class="leg-dot f"></div>Femme</div>
+        <div class="leg-item"><div class="leg-dot u"></div>Unisex</div>
+      </div>
+      <div class="pl-note">
+        All prices in PKR &nbsp;·&nbsp; All taxes included<br>
+        Free Delivery All Over Pakistan
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sec-nav">
+    <button class="nav-btn up" onclick="goTo('hero')"><span class="arr">↑</span> Back to Top</button>
+    <button class="nav-btn dn" onclick="goTo('contact')">Contact Us <span class="arr">↓</span></button>
+  </div>
+
+</div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════╗ -->
+<!--            § 3  CONTACT               -->
+<!-- ╚══════════════════════════════════════╝ -->
+<section class="section" id="contact">
+<div class="ct-wrap">
+
+  <p class="ct-eyebrow">Reach Us</p>
+  <h2 class="ct-title">Contact Us</h2>
   <p class="ct-sub">We'd love to hear from you</p>
   <div class="orn" aria-hidden="true">
     <div class="orn-line"></div>

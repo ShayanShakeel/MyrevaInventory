@@ -284,7 +284,7 @@
   /* Column header bar */
   .pl-col-row {
     display:grid;
-    grid-template-columns:30px 1fr auto 130px 58px 52px;
+    grid-template-columns:26px 1fr auto minmax(60px,100px) minmax(52px,58px) minmax(44px,52px);
     padding:0.65rem 1.1rem;
     border-bottom:1px solid rgba(201,168,76,0.18);
     background:rgba(201,168,76,0.06);
@@ -299,7 +299,7 @@
   /* Fragrance rows */
   .pl-row {
     display:grid;
-    grid-template-columns:30px 1fr auto 130px 58px 52px;
+    grid-template-columns:26px 1fr auto minmax(60px,100px) minmax(52px,58px) minmax(44px,52px);
     padding:0.9rem 1.1rem;
     border-bottom:1px solid rgba(201,168,76,0.055);
     align-items:center;
@@ -473,111 +473,119 @@
      RESPONSIVE
   ════════════════════════════════════════════ */
 
-  /* Allow table to scroll horizontally if viewport
-     is genuinely too narrow — never hides columns */
   .pl-table-wrap {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Tablet / large phone — only cosmetic tweaks,
-     full table columns preserved */
+  /* ── Mobile phones (default browser zoom) ── */
   @media (max-width:700px) {
     .corner { display:none; }
-    .pl-container { max-width:100%; padding:0 0.5rem; }
-    #pricelist { padding:3.5rem 0.75rem 3rem; }
+    .pl-container { max-width:100%; padding:0 0.25rem; }
+    #pricelist { padding:3rem 0.5rem 2.5rem; }
+
+    /* Drop the arrow column entirely — gives name column its space back */
+    .pl-col-row {
+      grid-template-columns: 22px 1fr 72px 50px 44px;
+    }
+    .pl-row {
+      grid-template-columns: 22px 1fr 72px 50px 44px;
+      padding: 0.75rem 0.7rem;
+    }
+    .row-arrow { display:none; }
+
+    /* Names: wrap instead of truncating */
+    .row-name {
+      white-space: normal;
+      word-break: break-word;
+      overflow: visible;
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+    }
+    .row-inspired {
+      white-space: normal;
+      word-break: break-word;
+      overflow: visible;
+      font-size: 0.72rem;
+    }
+
+    /* Pill: smaller so category column can be tighter */
+    .pill {
+      font-size: 0.38rem;
+      letter-spacing: 0.12em;
+      padding: 2px 5px;
+    }
+    .row-cat { text-align: center; }
+
+    /* Prices: tighter font so columns can sit closer */
+    .price-main  { font-size: 0.9rem; }
+    .price-small { font-size: 0.62rem; }
+    .price-cur   { font-size: 0.44rem; }
+
+    /* Column header labels: tighter */
+    .pl-col-lbl {
+      font-size: 0.38rem;
+      letter-spacing: 0.22em;
+    }
+
+    /* Footer: hide the legend dots on mobile — 
+       pills in each row already show the category */
+    .legend { display: none; }
+
+    /* Let the note text take the full footer width */
+    .pl-table-footer {
+      justify-content: center;
+    }
+    .pl-note {
+      text-align: center;
+      font-size: 0.42rem;
+      letter-spacing: 0.14em;
+      line-height: 1.8;
+    }
+
+    /* Nav buttons: stack and centre */
+    .sec-nav { flex-direction: column; align-items: stretch; }
+    .sec-nav .nav-btn { justify-content: center; }
   }
 
-  /* ── Card layout ONLY at ≤160px viewport ──
-     This triggers at ~300% zoom on a phone
-     (390px phone ÷ 3.0 ≈ 130px viewport)
-     but NOT at 240% zoom (≈163px) or below.   */
+  /* ── Card layout only at extreme zoom ~300%+ ── */
   @media (max-width:160px) {
 
     .pl-col-row { display:none; }
 
     .pl-row {
       display: grid;
-      grid-template-columns: 18px 1fr 1fr;
+      grid-template-columns: 14px 1fr 1fr;
       grid-template-rows: auto auto auto;
-      gap: 0.25rem 0.5rem;
-      padding: 0.85rem 0.7rem;
+      gap: 0.22rem 0.4rem;
+      padding: 0.75rem 0.55rem;
     }
-
-    .row-num {
-      grid-column: 1;
-      grid-row: 1 / 4;
-      align-self: start;
-      padding-top: 0.2rem;
-      font-size: 0.8rem;
-    }
-
-    .row-name-block {
-      grid-column: 2 / 4;
-      grid-row: 1;
-    }
-    .row-name {
-      white-space: normal;
-      font-size: 0.68rem;
-      overflow: visible;
-      text-overflow: unset;
-    }
-    .row-inspired {
-      white-space: normal;
-      font-size: 0.7rem;
-      overflow: visible;
-      text-overflow: unset;
-      margin-top: 0.1rem;
-    }
-
-    .row-arrow { display: none; }
-
-    .row-cat {
-      grid-column: 2 / 4;
-      grid-row: 2;
-      text-align: left;
-    }
-
-    .row-price {
-      grid-column: 2;
-      grid-row: 3;
-      text-align: left;
-    }
-    .row-price-sm {
-      grid-column: 3;
-      grid-row: 3;
-      text-align: right;
-    }
+    .row-num       { grid-column:1; grid-row:1/4; align-self:start; padding-top:0.15rem; }
+    .row-name-block{ grid-column:2/4; grid-row:1; }
+    .row-name      { font-size:0.62rem; }
+    .row-inspired  { font-size:0.62rem; margin-top:0.1rem; }
+    .row-arrow     { display:none; }
+    .row-cat       { grid-column:2/4; grid-row:2; text-align:left; }
+    .row-price     { grid-column:2; grid-row:3; text-align:left; }
+    .row-price-sm  { grid-column:3; grid-row:3; text-align:right; }
     .row-price::before {
-      display: block;
-      content: '55 ml';
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.4rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--t-dim);
-      margin-bottom: 2px;
+      display:block; content:'55 ml';
+      font-family:'Montserrat',sans-serif;
+      font-size:0.38rem; letter-spacing:0.28em;
+      text-transform:uppercase; color:var(--t-dim); margin-bottom:2px;
     }
     .row-price-sm::before {
-      display: block;
-      content: '3 ml';
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.4rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--t-dim);
-      margin-bottom: 2px;
-      text-align: right;
+      display:block; content:'3 ml';
+      font-family:'Montserrat',sans-serif;
+      font-size:0.38rem; letter-spacing:0.28em;
+      text-transform:uppercase; color:var(--t-dim);
+      margin-bottom:2px; text-align:right;
     }
-
-    .ct-grid { grid-template-columns: 1fr; }
-    .pl-table-footer { flex-direction: column; align-items: flex-start; }
-    .sec-nav { flex-direction: column; align-items: stretch; }
-    .sec-nav .nav-btn { justify-content: center; }
-    .cta-btn { padding: 11px 22px; font-size: 0.6rem; }
+    .ct-grid { grid-template-columns:1fr; }
+    .pl-table-footer { flex-direction:column; align-items:flex-start; }
+    .cta-btn { padding:11px 22px; font-size:0.6rem; }
   }
 
-  /* ── Large screens / 4K / TV ── */
   @media (min-width:2100px) { html { font-size:20px; } }
   @media (min-width:3200px) { html { font-size:28px; } }
 

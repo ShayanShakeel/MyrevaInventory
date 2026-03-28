@@ -473,119 +473,111 @@
      RESPONSIVE
   ════════════════════════════════════════════ */
 
-  @media (max-width:700px) {
-    .corner { display:none; }
-    .pl-container { max-width:100%; }
+  /* Allow table to scroll horizontally if viewport
+     is genuinely too narrow — never hides columns */
+  .pl-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
-  @media (max-width:600px) {
+  /* Tablet / large phone — only cosmetic tweaks,
+     full table columns preserved */
+  @media (max-width:700px) {
+    .corner { display:none; }
+    .pl-container { max-width:100%; padding:0 0.5rem; }
+    #pricelist { padding:3.5rem 0.75rem 3rem; }
+  }
 
-    /* Hide column header bar — cards are self-labelled */
+  /* ── Card layout ONLY at ≤160px viewport ──
+     This triggers at ~300% zoom on a phone
+     (390px phone ÷ 3.0 ≈ 130px viewport)
+     but NOT at 240% zoom (≈163px) or below.   */
+  @media (max-width:160px) {
+
     .pl-col-row { display:none; }
 
-    /* Each row: 3-col mini grid
-       col 1 = row number (spans all rows vertically)
-       col 2 = left content / left price
-       col 3 = right price                            */
     .pl-row {
       display: grid;
-      grid-template-columns: 22px 1fr 1fr;
+      grid-template-columns: 18px 1fr 1fr;
       grid-template-rows: auto auto auto;
-      gap: 0.28rem 0.65rem;
-      padding: 0.95rem 0.9rem;
+      gap: 0.25rem 0.5rem;
+      padding: 0.85rem 0.7rem;
     }
 
-    /* Number anchors the left side across all 3 rows */
     .row-num {
       grid-column: 1;
       grid-row: 1 / 4;
       align-self: start;
-      padding-top: 0.22rem;
-      font-size: 0.9rem;
+      padding-top: 0.2rem;
+      font-size: 0.8rem;
     }
 
-    /* Name + inspired-by span both content columns */
     .row-name-block {
       grid-column: 2 / 4;
       grid-row: 1;
     }
     .row-name {
       white-space: normal;
-      font-size: 0.75rem;
+      font-size: 0.68rem;
       overflow: visible;
       text-overflow: unset;
     }
     .row-inspired {
       white-space: normal;
-      font-size: 0.78rem;
+      font-size: 0.7rem;
       overflow: visible;
       text-overflow: unset;
-      margin-top: 0.12rem;
+      margin-top: 0.1rem;
     }
 
-    /* Arrow — not needed in card layout */
     .row-arrow { display: none; }
 
-    /* Category pill on its own row, left-aligned */
     .row-cat {
       grid-column: 2 / 4;
       grid-row: 2;
       text-align: left;
     }
 
-    /* 55ml price: bottom-left */
     .row-price {
       grid-column: 2;
       grid-row: 3;
       text-align: left;
     }
-
-    /* 3ml price: bottom-right */
     .row-price-sm {
       grid-column: 3;
       grid-row: 3;
       text-align: right;
     }
-
-    /* Size labels sitting above each price value */
     .row-price::before {
       display: block;
       content: '55 ml';
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.42rem;
+      font-size: 0.4rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--t-dim);
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
     .row-price-sm::before {
       display: block;
       content: '3 ml';
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.42rem;
+      font-size: 0.4rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--t-dim);
-      margin-bottom: 3px;
+      margin-bottom: 2px;
       text-align: right;
     }
 
-    /* Contact: single column */
     .ct-grid { grid-template-columns: 1fr; }
-
-    /* Footer and nav tighten up */
     .pl-table-footer { flex-direction: column; align-items: flex-start; }
     .sec-nav { flex-direction: column; align-items: stretch; }
     .sec-nav .nav-btn { justify-content: center; }
-    #pricelist { padding: 3rem 0.75rem 2.5rem; }
+    .cta-btn { padding: 11px 22px; font-size: 0.6rem; }
   }
 
-  @media (max-width:360px) {
-    .row-name  { font-size: 0.68rem; }
-    .cta-btn   { padding: 11px 22px; font-size: 0.6rem; }
-    #pricelist { padding: 2.5rem 0.5rem 2rem; }
-  }
-
+  /* ── Large screens / 4K / TV ── */
   @media (min-width:2100px) { html { font-size:20px; } }
   @media (min-width:3200px) { html { font-size:28px; } }
 

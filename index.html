@@ -472,26 +472,131 @@
   /* ════════════════════════════════════════════
      RESPONSIVE
   ════════════════════════════════════════════ */
+
+  /* ── Tablet: hide corner flourishes only ── */
   @media (max-width:700px) {
     .corner { display:none; }
-    .pl-col-row { grid-template-columns:24px 1fr 80px 48px 44px; }
-    .pl-row      { grid-template-columns:24px 1fr 80px 48px 44px; }
+    .pl-container { max-width:100%; }
+  }
+
+  /* ── Mobile: switch pricelist to card-stack layout ── */
+  @media (max-width:600px) {
+
+    /* Hide the horizontal column header bar — cards are self-labelled */
+    .pl-col-row { display:none; }
+
+    /* Each row becomes a self-contained card */
+    .pl-row {
+      display:flex;
+      flex-direction:column;
+      gap:0.55rem;
+      padding:1rem 1rem;
+      /* reset the desktop grid */
+      grid-template-columns:unset;
+    }
+
+    /* Top line: number + name + pill all inline */
+    .pl-row-top {
+      display:flex;
+      align-items:center;
+      gap:0.6rem;
+      flex-wrap:wrap;
+    }
+
+    /* Row number */
+    .row-num {
+      font-size:0.82rem;
+      flex-shrink:0;
+      min-width:18px;
+    }
+
+    /* Name block fills remaining space */
+    .row-name-block {
+      flex:1;
+      min-width:0;
+    }
+
+    /* Allow name to wrap on very small screens */
+    .row-name {
+      white-space:normal;
+      font-size:0.78rem;
+    }
+
+    /* Inspired-by: always visible, wraps naturally */
+    .row-inspired {
+      white-space:normal;
+      font-size:0.78rem;
+      margin-top:0.1rem;
+    }
+
+    /* Arrow: hide on mobile — redundant in card layout */
     .row-arrow { display:none; }
-    .row-inspired,.pl-col-lbl.inspired { display:none; }
-    .pl-container { max-width:520px; }
-  }
-  @media (max-width:480px) {
-    .pl-col-row { grid-template-columns:22px 1fr 72px 44px; }
-    .pl-row      { grid-template-columns:22px 1fr 72px 44px; }
-    .row-cat,.pl-col-lbl.cat { display:none; }
+
+    /* Category pill sits on its own line below the name block */
+    .row-cat {
+      text-align:left;
+    }
+
+    /* Prices: sit side by side naturally since row is now flex column */
+    .row-price::before {
+      content: '55ml · ';
+      font-family:'Montserrat',sans-serif;
+      font-size:0.42rem;letter-spacing:0.28em;
+      text-transform:uppercase;color:var(--t-dim);
+      vertical-align:middle;margin-right:2px;
+    }
+    .row-price-sm::before {
+      content: '3ml · ';
+      font-family:'Montserrat',sans-serif;
+      font-size:0.42rem;letter-spacing:0.28em;
+      text-transform:uppercase;color:var(--t-dim);
+      vertical-align:middle;margin-right:2px;
+    }
+    .row-price, .row-price-sm { text-align:left; }
+
+    .pl-price-block {
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:0.1rem;
+    }
+
+    .pl-price-lbl {
+      font-family:'Montserrat',sans-serif;
+      font-size:0.42rem;
+      letter-spacing:0.3em;
+      text-transform:uppercase;
+      color:var(--t-dim);
+    }
+
+    /* Override right-align from desktop */
+    .row-price,
+    .row-price-sm {
+      text-align:left;
+    }
+
+    /* Contact cards: single column */
     .ct-grid { grid-template-columns:1fr; }
-    .pl-table-footer { flex-direction:column;align-items:flex-start; }
+
+    /* Table footer stacks */
+    .pl-table-footer { flex-direction:column; align-items:flex-start; }
+
+    /* Nav buttons: stack and full width */
+    .sec-nav { flex-direction:column; align-items:stretch; }
+    .sec-nav .nav-btn { justify-content:center; }
+
+    /* Pricelist padding tighter on mobile */
+    #pricelist { padding:3rem 0.8rem 2.5rem; }
   }
+
+  /* ── Very small phones ── */
   @media (max-width:360px) {
-    .pl-col-row,.pl-row { padding:0.7rem 0.65rem; }
-    .row-name { font-size:0.68rem; }
+    .row-name { font-size:0.72rem; }
     .cta-btn  { padding:11px 22px;font-size:0.6rem; }
+    #pricelist { padding:2.5rem 0.6rem 2rem; }
   }
+
+  /* ── Large screens / 4K / TV ── */
   @media (min-width:2100px) { html { font-size:20px; } }
   @media (min-width:3200px) { html { font-size:28px; } }
   </style>
@@ -501,6 +606,7 @@
 <!-- ╔══════════════════════════════════════╗ -->
 <!--              § 1  HERO                 -->
 <!-- ╚══════════════════════════════════════╝ -->
+
 <section class="section" id="hero">
 
   <canvas id="hero-canvas"></canvas>
@@ -546,6 +652,7 @@
 <!-- ╔══════════════════════════════════════╗ -->
 <!--            § 2  PRICELIST              -->
 <!-- ╚══════════════════════════════════════╝ -->
+ 
 <section class="section" id="pricelist">
 <div class="pl-container">
 
@@ -669,7 +776,7 @@
 <!-- ╔══════════════════════════════════════╗ -->
 <!--            § 3  CONTACT               -->
 <!-- ╚══════════════════════════════════════╝ -->
- 
+
 <section class="section" id="contact">
 <div class="ct-wrap">
 

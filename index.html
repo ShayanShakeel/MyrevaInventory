@@ -469,136 +469,126 @@
     letter-spacing:0.28em;color:rgba(201,168,76,0.22);text-transform:uppercase;margin-top:0.3rem;
   }
 
-  /* ════════════════════════════════════════════
+/* ════════════════════════════════════════════
      RESPONSIVE
   ════════════════════════════════════════════ */
 
-  /* ── Tablet: hide corner flourishes only ── */
   @media (max-width:700px) {
     .corner { display:none; }
     .pl-container { max-width:100%; }
   }
 
-  /* ── Mobile: switch pricelist to card-stack layout ── */
   @media (max-width:600px) {
 
-    /* Hide the horizontal column header bar — cards are self-labelled */
+    /* Hide column header bar — cards are self-labelled */
     .pl-col-row { display:none; }
 
-    /* Each row becomes a self-contained card */
+    /* Each row: 3-col mini grid
+       col 1 = row number (spans all rows vertically)
+       col 2 = left content / left price
+       col 3 = right price                            */
     .pl-row {
-      display:flex;
-      flex-direction:column;
-      gap:0.55rem;
-      padding:1rem 1rem;
-      /* reset the desktop grid */
-      grid-template-columns:unset;
+      display: grid;
+      grid-template-columns: 22px 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 0.28rem 0.65rem;
+      padding: 0.95rem 0.9rem;
     }
 
-    /* Top line: number + name + pill all inline */
-    .pl-row-top {
-      display:flex;
-      align-items:center;
-      gap:0.6rem;
-      flex-wrap:wrap;
-    }
-
-    /* Row number */
+    /* Number anchors the left side across all 3 rows */
     .row-num {
-      font-size:0.82rem;
-      flex-shrink:0;
-      min-width:18px;
+      grid-column: 1;
+      grid-row: 1 / 4;
+      align-self: start;
+      padding-top: 0.22rem;
+      font-size: 0.9rem;
     }
 
-    /* Name block fills remaining space */
+    /* Name + inspired-by span both content columns */
     .row-name-block {
-      flex:1;
-      min-width:0;
+      grid-column: 2 / 4;
+      grid-row: 1;
     }
-
-    /* Allow name to wrap on very small screens */
     .row-name {
-      white-space:normal;
-      font-size:0.78rem;
+      white-space: normal;
+      font-size: 0.75rem;
+      overflow: visible;
+      text-overflow: unset;
     }
-
-    /* Inspired-by: always visible, wraps naturally */
     .row-inspired {
-      white-space:normal;
-      font-size:0.78rem;
-      margin-top:0.1rem;
+      white-space: normal;
+      font-size: 0.78rem;
+      overflow: visible;
+      text-overflow: unset;
+      margin-top: 0.12rem;
     }
 
-    /* Arrow: hide on mobile — redundant in card layout */
-    .row-arrow { display:none; }
+    /* Arrow — not needed in card layout */
+    .row-arrow { display: none; }
 
-    /* Category pill sits on its own line below the name block */
+    /* Category pill on its own row, left-aligned */
     .row-cat {
-      text-align:left;
+      grid-column: 2 / 4;
+      grid-row: 2;
+      text-align: left;
     }
 
-    /* Prices: sit side by side naturally since row is now flex column */
+    /* 55ml price: bottom-left */
+    .row-price {
+      grid-column: 2;
+      grid-row: 3;
+      text-align: left;
+    }
+
+    /* 3ml price: bottom-right */
+    .row-price-sm {
+      grid-column: 3;
+      grid-row: 3;
+      text-align: right;
+    }
+
+    /* Size labels sitting above each price value */
     .row-price::before {
-      content: '55ml · ';
-      font-family:'Montserrat',sans-serif;
-      font-size:0.42rem;letter-spacing:0.28em;
-      text-transform:uppercase;color:var(--t-dim);
-      vertical-align:middle;margin-right:2px;
+      display: block;
+      content: '55 ml';
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.42rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--t-dim);
+      margin-bottom: 3px;
     }
     .row-price-sm::before {
-      content: '3ml · ';
-      font-family:'Montserrat',sans-serif;
-      font-size:0.42rem;letter-spacing:0.28em;
-      text-transform:uppercase;color:var(--t-dim);
-      vertical-align:middle;margin-right:2px;
-    }
-    .row-price, .row-price-sm { text-align:left; }
-
-    .pl-price-block {
-      display:flex;
-      flex-direction:column;
-      align-items:flex-start;
-      gap:0.1rem;
+      display: block;
+      content: '3 ml';
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.42rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--t-dim);
+      margin-bottom: 3px;
+      text-align: right;
     }
 
-    .pl-price-lbl {
-      font-family:'Montserrat',sans-serif;
-      font-size:0.42rem;
-      letter-spacing:0.3em;
-      text-transform:uppercase;
-      color:var(--t-dim);
-    }
+    /* Contact: single column */
+    .ct-grid { grid-template-columns: 1fr; }
 
-    /* Override right-align from desktop */
-    .row-price,
-    .row-price-sm {
-      text-align:left;
-    }
-
-    /* Contact cards: single column */
-    .ct-grid { grid-template-columns:1fr; }
-
-    /* Table footer stacks */
-    .pl-table-footer { flex-direction:column; align-items:flex-start; }
-
-    /* Nav buttons: stack and full width */
-    .sec-nav { flex-direction:column; align-items:stretch; }
-    .sec-nav .nav-btn { justify-content:center; }
-
-    /* Pricelist padding tighter on mobile */
-    #pricelist { padding:3rem 0.8rem 2.5rem; }
+    /* Footer and nav tighten up */
+    .pl-table-footer { flex-direction: column; align-items: flex-start; }
+    .sec-nav { flex-direction: column; align-items: stretch; }
+    .sec-nav .nav-btn { justify-content: center; }
+    #pricelist { padding: 3rem 0.75rem 2.5rem; }
   }
 
-  /* ── Very small phones ── */
   @media (max-width:360px) {
-    .row-name { font-size:0.72rem; }
-    .cta-btn  { padding:11px 22px;font-size:0.6rem; }
-    #pricelist { padding:2.5rem 0.6rem 2rem; }
+    .row-name  { font-size: 0.68rem; }
+    .cta-btn   { padding: 11px 22px; font-size: 0.6rem; }
+    #pricelist { padding: 2.5rem 0.5rem 2rem; }
   }
 
-  /* ── Large screens / 4K / TV ── */
   @media (min-width:2100px) { html { font-size:20px; } }
   @media (min-width:3200px) { html { font-size:28px; } }
+
   </style>
 </head>
 <body>

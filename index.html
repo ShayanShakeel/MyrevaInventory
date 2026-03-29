@@ -257,7 +257,9 @@
   /* Section header */
   .pl-header { text-align:center;margin-bottom:2.8rem; }
   .pl-eyebrow {
-    font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:0.5em;
+    font-family:'Cinzel',serif;
+    font-size:clamp(0.42rem,1.2vw,0.55rem);
+    letter-spacing:clamp(0.18em,1.5vw,0.5em);
     color:var(--gold-dk);text-transform:uppercase;margin-bottom:0.6rem;
   }
   .pl-title {
@@ -267,7 +269,7 @@
   }
   .pl-sub {
     font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
-    font-size:1.05rem;color:var(--t-soft);
+    font-size:clamp(0.82rem,2.2vw,1.05rem);color:var(--t-soft);
   }
   .pl-header .orn { margin-top:1.2rem; }
 
@@ -484,6 +486,11 @@
     .pl-container { max-width:100%; padding:0 0.25rem; }
     #pricelist { padding:3rem 0.5rem 2.5rem; }
 
+    /* ADD THESE TWO: */
+    .pl-header { margin-bottom:1.6rem; }
+    .pl-header .orn-line { width:32px; }
+
+
     /* Drop the arrow column entirely — gives name column its space back */
     .pl-col-row {
       grid-template-columns: 22px 1fr 72px 50px 44px;
@@ -493,6 +500,7 @@
       padding: 0.75rem 0.7rem;
     }
     .row-arrow { display:none; }
+    .pl-col-lbl.inspired { display:none; }
 
     /* Names: wrap instead of truncating */
     .row-name {

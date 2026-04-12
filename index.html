@@ -143,24 +143,12 @@
 
   .logo-wrap { margin-bottom:0.4rem; }
 
-  /*
-   ┌────────────────────────────────────────────┐
-   │  IMAGE LOGO: replace #logo-text span with: │
-   │  <img id="logo-img" src="myreva-logo.png"  │
-   │    alt="Myreva Olfactives"                 │
-   │    style="height:clamp(48px,9vw,110px);    │
-   │    display:block;margin:0 auto;opacity:0;  │
-   │    animation:fadeUp 1.2s ease forwards     │
-   │    0.15s;filter:drop-shadow(0 0 28px       │
-   │    rgba(201,168,76,0.28))">                │
-   └────────────────────────────────────────────┘
-  */
   #logo-text {
     font-family:'Cinzel',serif;
     font-size:clamp(2.8rem,9vw,7.8rem);font-weight:600;letter-spacing:0.30em;line-height:1;
     filter:drop-shadow(0 0 55px rgba(201,168,76,0.22));
     display:block;
-    color: var(--gold); /* solid fallback if gradient clip unsupported */
+    color: var(--gold);
   }
   #logo-text .L {
     display:inline-block;opacity:0;
@@ -235,7 +223,7 @@
   }
 
   /* ════════════════════════════════════════════
-     § 2  PRICELIST — same dark burgundy world
+     § 2  PRICELIST
   ════════════════════════════════════════════ */
   #pricelist {
     background:
@@ -246,7 +234,6 @@
     justify-content:flex-start;
   }
 
-  /* Thin gold rule tying sections */
   #pricelist::before {
     content:'';position:absolute;top:0;left:0;right:0;height:1px;
     background:linear-gradient(90deg,transparent,var(--gold),rgba(201,168,76,0.4),var(--gold),transparent);
@@ -254,7 +241,6 @@
 
   .pl-container { width:100%;max-width:760px; }
 
-  /* Section header */
   .pl-header { text-align:center;margin-bottom:2.8rem; }
   .pl-eyebrow {
     font-family:'Cinzel',serif;
@@ -273,7 +259,6 @@
   }
   .pl-header .orn { margin-top:1.2rem; }
 
-  /* Table card */
   .pl-table-wrap {
     border:1px solid var(--gold-bdr);
     border-radius:2px;overflow:hidden;
@@ -283,7 +268,6 @@
       0 2px 12px rgba(0,0,0,0.25);
   }
 
-  /* Column header bar */
   .pl-col-row {
     display:grid;
     grid-template-columns:26px 1fr auto minmax(60px,100px) minmax(52px,58px) minmax(44px,52px);
@@ -298,7 +282,6 @@
   .pl-col-lbl.c { text-align:center; }
   .pl-col-lbl.r { text-align:right; }
 
-  /* Fragrance rows */
   .pl-row {
     display:grid;
     grid-template-columns:26px 1fr auto minmax(60px,100px) minmax(52px,58px) minmax(44px,52px);
@@ -353,7 +336,6 @@
   .price-small { font-family:'Montserrat',sans-serif;font-size:0.72rem;font-weight:400;color:var(--t-dim); }
   .price-small .price-cur { font-size:0.46rem; }
 
-  /* Table footer */
   .pl-table-footer {
     padding:0.75rem 1.1rem;
     border-top:1px solid rgba(201,168,76,0.1);
@@ -381,7 +363,7 @@
   }
 
   /* ════════════════════════════════════════════
-     § 3  CONTACT — same dark world
+     § 3  CONTACT
   ════════════════════════════════════════════ */
   #contact {
     background:
@@ -412,7 +394,6 @@
   }
   .ct-wrap .orn { margin:1.2rem 0 2.6rem; }
 
-  /* Contact grid */
   .ct-grid {
     display:grid;grid-template-columns:1fr 1fr;gap:1px;
     border:1px solid var(--gold-bdr);border-radius:2px;overflow:hidden;
@@ -471,7 +452,7 @@
     letter-spacing:0.28em;color:rgba(201,168,76,0.22);text-transform:uppercase;margin-top:0.3rem;
   }
 
-/* ════════════════════════════════════════════
+  /* ════════════════════════════════════════════
      RESPONSIVE
   ════════════════════════════════════════════ */
 
@@ -480,18 +461,14 @@
     -webkit-overflow-scrolling: touch;
   }
 
-  /* ── Mobile phones (default browser zoom) ── */
   @media (max-width:700px) {
     .corner { display:none; }
     .pl-container { max-width:100%; padding:0 0.25rem; }
     #pricelist { padding:3rem 0.5rem 2.5rem; }
 
-    /* ADD THESE TWO: */
     .pl-header { margin-bottom:1.6rem; }
     .pl-header .orn-line { width:32px; }
 
-
-    /* Drop the arrow column entirely — gives name column its space back */
     .pl-col-row {
       grid-template-columns: 22px 1fr 72px 50px 44px;
     }
@@ -502,7 +479,6 @@
     .row-arrow { display:none; }
     .pl-col-lbl.inspired { display:none; }
 
-    /* Names: wrap instead of truncating */
     .row-name {
       white-space: normal;
       word-break: break-word;
@@ -517,7 +493,6 @@
       font-size: 0.72rem;
     }
 
-    /* Pill: smaller so category column can be tighter */
     .pill {
       font-size: 0.38rem;
       letter-spacing: 0.12em;
@@ -525,22 +500,17 @@
     }
     .row-cat { text-align: center; }
 
-    /* Prices: tighter font so columns can sit closer */
     .price-main  { font-size: 0.9rem; }
     .price-small { font-size: 0.62rem; }
     .price-cur   { font-size: 0.44rem; }
 
-    /* Column header labels: tighter */
     .pl-col-lbl {
       font-size: 0.38rem;
       letter-spacing: 0.22em;
     }
 
-    /* Footer: hide the legend dots on mobile — 
-       pills in each row already show the category */
     .legend { display: none; }
 
-    /* Let the note text take the full footer width */
     .pl-table-footer {
       justify-content: center;
     }
@@ -551,12 +521,10 @@
       line-height: 1.8;
     }
 
-    /* Nav buttons: stack and centre */
     .sec-nav { flex-direction: column; align-items: stretch; }
     .sec-nav .nav-btn { justify-content: center; }
   }
 
-  /* ── Card layout only at extreme zoom ~300%+ ── */
   @media (max-width:160px) {
 
     .pl-col-row { display:none; }
@@ -676,76 +644,95 @@
       <div class="pl-col-lbl r">3 ml</div>
     </div>
 
+    <!-- ① The Tyrant — NEW (top) -->
     <div class="pl-row">
       <div class="row-num">1</div>
-      <div class="row-name-block"><div class="row-name">Oud Lantern</div><div class="row-inspired">Ahmed Al Maghribi Marj</div></div>
+      <div class="row-name-block"><div class="row-name">The Tyrant</div><div class="row-inspired">Clive Christian Blonde Amber</div></div>
       <div class="row-arrow">›</div>
       <div class="row-cat"><span class="pill pill-h">Homme</span></div>
-      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>3200</span></div>
-      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>250</span></div>
+      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>4000</span></div>
+      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>300</span></div>
     </div>
 
     <div class="pl-row">
       <div class="row-num">2</div>
-      <div class="row-name-block"><div class="row-name">Eternal Chorus</div><div class="row-inspired">Louis Vuitton Symphony</div></div>
+      <div class="row-name-block"><div class="row-name">Oud Lantern</div><div class="row-inspired">Ahmed Al Maghribi Marj</div></div>
       <div class="row-arrow">›</div>
-      <div class="row-cat"><span class="pill pill-u">Unisex</span></div>
-      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>3000</span></div>
+      <div class="row-cat"><span class="pill pill-h">Homme</span></div>
+      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>3500</span></div>
       <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>250</span></div>
     </div>
 
     <div class="pl-row">
       <div class="row-num">3</div>
-      <div class="row-name-block"><div class="row-name">The Apex</div><div class="row-inspired">Fragrance One Office For Men</div></div>
+      <div class="row-name-block"><div class="row-name">Eternal Chorus</div><div class="row-inspired">Louis Vuitton Symphony</div></div>
       <div class="row-arrow">›</div>
-      <div class="row-cat"><span class="pill pill-h">Homme</span></div>
-      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>2500</span></div>
-      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>200</span></div>
+      <div class="row-cat"><span class="pill pill-u">Unisex</span></div>
+      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>3200</span></div>
+      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>250</span></div>
     </div>
 
     <div class="pl-row">
       <div class="row-num">4</div>
-      <div class="row-name-block"><div class="row-name">Coco Current</div><div class="row-inspired">Rasasi Hawas Tropical</div></div>
+      <div class="row-name-block"><div class="row-name">The Apex</div><div class="row-inspired">Fragrance One Office For Men</div></div>
       <div class="row-arrow">›</div>
       <div class="row-cat"><span class="pill pill-h">Homme</span></div>
-      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>2000</span></div>
-      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>200</span></div>
+      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>2500</span></div>
+      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>250</span></div>
     </div>
 
     <div class="pl-row">
       <div class="row-num">5</div>
-      <div class="row-name-block"><div class="row-name">Cloud Candy</div><div class="row-inspired">Kayali Yum Boujee Marshmallow</div></div>
+      <div class="row-name-block"><div class="row-name">Pista Potion</div><div class="row-inspired">Kayali Yum Pistachio Gelato</div></div>
       <div class="row-arrow">›</div>
       <div class="row-cat"><span class="pill pill-f">Femme</span></div>
-      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>2000</span></div>
-      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>200</span></div>
+      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>2500</span></div>
+      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>250</span></div>
     </div>
 
     <div class="pl-row">
       <div class="row-num">6</div>
-      <div class="row-name-block"><div class="row-name">Subzero</div><div class="row-inspired">Rasasi Hawas Ice</div></div>
+      <div class="row-name-block"><div class="row-name">Coco Current</div><div class="row-inspired">Rasasi Hawas Tropical</div></div>
       <div class="row-arrow">›</div>
       <div class="row-cat"><span class="pill pill-h">Homme</span></div>
-      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>2000</span></div>
-      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>200</span></div>
+      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>2500</span></div>
+      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>250</span></div>
     </div>
 
     <div class="pl-row">
       <div class="row-num">7</div>
-      <div class="row-name-block"><div class="row-name">Lucent Thunder</div><div class="row-inspired">Imagination &amp; Sauvage Blend</div></div>
+      <div class="row-name-block"><div class="row-name">Cloud Candy</div><div class="row-inspired">Kayali Yum Boujee Marshmallow</div></div>
       <div class="row-arrow">›</div>
-      <div class="row-cat"><span class="pill pill-h">Homme</span></div>
-      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>1800</span></div>
-      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>150</span></div>
+      <div class="row-cat"><span class="pill pill-f">Femme</span></div>
+      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>2500</span></div>
+      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>250</span></div>
     </div>
 
     <div class="pl-row">
       <div class="row-num">8</div>
+      <div class="row-name-block"><div class="row-name">Subzero</div><div class="row-inspired">Rasasi Hawas Ice</div></div>
+      <div class="row-arrow">›</div>
+      <div class="row-cat"><span class="pill pill-h">Homme</span></div>
+      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>2200</span></div>
+      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>200</span></div>
+    </div>
+
+    <div class="pl-row">
+      <div class="row-num">9</div>
+      <div class="row-name-block"><div class="row-name">Lucent Thunder</div><div class="row-inspired">Imagination &amp; Sauvage Blend</div></div>
+      <div class="row-arrow">›</div>
+      <div class="row-cat"><span class="pill pill-h">Homme</span></div>
+      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>2200</span></div>
+      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>200</span></div>
+    </div>
+
+    <div class="pl-row">
+      <div class="row-num">10</div>
       <div class="row-name-block"><div class="row-name">Silk Romance</div><div class="row-inspired">Lancôme La Nuit Trésor</div></div>
       <div class="row-arrow">›</div>
       <div class="row-cat"><span class="pill pill-f">Femme</span></div>
-      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>1800</span></div>
-      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>150</span></div>
+      <div class="row-price"><span class="price-main"><span class="price-cur">Rs</span>2000</span></div>
+      <div class="row-price-sm"><span class="price-small"><span class="price-cur">Rs</span>200</span></div>
     </div>
 
     <div class="pl-table-footer">
@@ -794,7 +781,7 @@
         <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div class="ct-label">Facebook</div>
-      <div class="ct-handle">@Myreva Olfactives</div><!-- ← replace -->
+      <div class="ct-handle">@Myreva Olfactives</div>
     </a>
 
     <a class="ct-card" href="https://www.instagram.com/myrevaolfactives?igsh=MWQxN2V3dnM3dXh3MA==" target="_blank" rel="noopener" aria-label="Instagram">
@@ -806,7 +793,7 @@
         </svg>
       </div>
       <div class="ct-label">Instagram</div>
-      <div class="ct-handle">@myrevaolfactives</div><!-- ← replace -->
+      <div class="ct-handle">@myrevaolfactives</div>
     </a>
 
     <a class="ct-card" href="https://wa.me/923293758981" target="_blank" rel="noopener" aria-label="WhatsApp">
@@ -814,7 +801,7 @@
         <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div class="ct-label">WhatsApp</div>
-      <div class="ct-handle">+92 329 3758981</div><!-- ← replace -->
+      <div class="ct-handle">+92 329 3758981</div>
     </a>
 
     <a class="ct-card" href="mailto:myrevaolfactives@gmail.com" aria-label="Email">
@@ -825,7 +812,7 @@
         </svg>
       </div>
       <div class="ct-label">Email</div>
-      <div class="ct-handle">myrevaolfactives@gmail.com</div><!-- ← replace -->
+      <div class="ct-handle">myrevaolfactives@gmail.com</div>
     </a>
 
   </div>
